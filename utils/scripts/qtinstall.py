@@ -39,7 +39,7 @@ def download_file(url: str, filepath: str):
             for chunk in r.iter_content(chunk_size=4096):
                 if not chunk: # To filter out keep-alive chunks.
                     continue
-                    
+
                 downloaded += len(chunk)
                 f.write(chunk)
                 erase_last_lines(1)
@@ -68,8 +68,8 @@ def write_installscript(os: str, filepath: str, install_to: str, appendedscriptf
             f.write('\"qt.qt5.5141.gcc_64\"'.encode())
         elif (os == 'Windows'):
             f.write('\"qt.qt5.5141.win64_msvc2017_64\"'.encode())
-        
-        f.write('];var InstallPath = \"{}\";'
+
+        f.write('];var InstallPath = String.raw`{}`;'
                 .format(install_to)
                 # Write is expecting a bytes object and not a str.
                 .encode())
