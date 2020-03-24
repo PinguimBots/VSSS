@@ -79,12 +79,12 @@ def write_installscript(os: str, filepath: str, install_to: str, appendedscriptf
 
 def main():
     downloads = {
-        # see http://download.qt.io/official_releases/qt/5.14/5.14.1/qt-opensource-windows-x86-5.12.7.exe.mirrorlist
+        # see http://download.qt.io/official_releases/qt/5.14/5.14.1/qt-opensource-windows-x86-5.14.1.exe.mirrorlist
         'Windows': {
             'link': 'http://download.qt.io/official_releases/qt/5.14/5.14.1/qt-opensource-windows-x86-5.14.1.exe',
             'sha256': '24b6fb28ca07c46a25f40387e591e0484d82cb45ba252f4f5f1fa0ae24aba53b',
         },
-        # see http://download.qt.io/official_releases/qt/5.14/5.14.1/qt-opensource-linux-x64-5.12.7.run.mirrorlist
+        # see http://download.qt.io/official_releases/qt/5.14/5.14.1/qt-opensource-linux-x64-5.14.1.run.mirrorlist
         'Linux': {
             'link': 'http://download.qt.io/official_releases/qt/5.14/5.14.1/qt-opensource-linux-x64-5.14.1.run',
             'sha256': '66ef5e8b776daa5d1e3dbf66298f1019b5e48c3bc8418c71ab7e9e290d7783e7',
