@@ -212,7 +212,7 @@ def install_opencv(out, depspath: Path):
             'install',
             '-j4',
             '-C', # Where to run make
-            str(builddir.joinpath)
+            str(builddir)
         ]
         out.addstr('Running command: {}'.format(make_command))
         make_proc = subprocess.Popen(make_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
