@@ -1,1 +1,7 @@
-deps
+build/
+
+!subprojects/
+subprojects/opencv4/*
+!subprojects/opencv4/meson.build
+subprojects/qt5/*
+!subprojects/qt5/meson.build

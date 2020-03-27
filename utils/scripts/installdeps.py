@@ -26,12 +26,12 @@ def main(stdscr):
 
     scriptpath = Path(__file__).resolve().parent
     projectpath = scriptpath.parent.parent
-    depspath = projectpath.joinpath('deps')
+    subprojpath = projectpath.joinpath('subprojects')
 
-    qt_install_thread = Thread(target=install_qt, args=[win1, scriptpath, depspath], daemon=True)
+    qt_install_thread = Thread(target=install_qt, args=[win1, scriptpath, subprojpath], daemon=True)
     qt_install_thread.start()
 
-    opencv_install_thread = Thread(target=install_opencv, args=[win2, depspath], daemon=True)
+    opencv_install_thread = Thread(target=install_opencv, args=[win2, subprojpath], daemon=True)
     opencv_install_thread.start()
 
     stdscr.refresh()
@@ -102,7 +102,7 @@ def write_qt_installscript(os: str, filepath: str, install_to: str, appendedscri
         with open(appendedscriptfilepath, 'rb') as asf:
             f.write(asf.read())
 
-def install_qt(out, scriptpath: Path, depspath: Path):
+def install_qt(out, scriptpath: Path, installpath: Path):
     downloads = {
         # see http://download.qt.io/official_releases/qt/5.14/5.14.1/qt-opensource-windows-x86-5.12.7.exe.mirrorlist
         'Windows': {
@@ -149,7 +149,7 @@ def install_qt(out, scriptpath: Path, depspath: Path):
         write_qt_installscript(
             os=operatingsystem,
             filepath=installscriptpath,
-            install_to=depspath.joinpath('Qt'),
+            install_to=installpath.joinpath('qt5'),
             appendedscriptfilepath=scriptpath.joinpath('qtinstaller-noninteractive.qs.js'))
 
         # chmod +x installerpath
@@ -166,7 +166,7 @@ def install_qt(out, scriptpath: Path, depspath: Path):
 
     out.addstr('--- All donezo! ---')
 
-def install_opencv(out, depspath: Path):
+def install_opencv(out, subprojpath: Path):
     url = 'https://github.com/opencv/opencv/archive/4.2.0.zip'
     expectedchecksum = '55bd939079d141a50fca74bde5b61b339dd0f0ece6320ec76859aaff03c90d9f'
 
@@ -200,7 +200,7 @@ def install_opencv(out, depspath: Path):
             '-S{}'.format(Path(tmpdir).joinpath('opencv-4.2.0')), # Path to source
             '-B{}'.format(builddir), # Path to build
             '-DCMAKE_BUILD_TYPE=Release',
-            '-DCMAKE_INSTALL_PREFIX={}'.format(depspath.joinpath('OpenCV'))
+            '-DCMAKE_INSTALL_PREFIX={}'.format(subprojpath.joinpath('opencv4'))
         ]
         out.addstr('Running command: {}'.format(cmake_command))
         cmake_proc = subprocess.Popen(cmake_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
