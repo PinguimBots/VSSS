@@ -4,6 +4,7 @@
 // that will be appended here by the install script.
 
 function Controller() {
+    installer.setMessageBoxAutomaticAnswer("OverwriteTargetDirectory", QMessageBox.Ok)
     installer.setMessageBoxAutomaticAnswer("installationError", QMessageBox.Retry);
     installer.setMessageBoxAutomaticAnswer("installationErrorWithRetry", QMessageBox.Retry);
     installer.setMessageBoxAutomaticAnswer("DownloadError", QMessageBox.Retry);
