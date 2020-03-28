@@ -40,8 +40,8 @@ Controller.prototype.WelcomePageCallback = function() {
 Controller.prototype.CredentialsPageCallback = function() {
     logCurrentPage();
 
-    page().loginWidget.EmailLineEdit.text ='qtinstallerthrowaway@gmail.com'
-    page().loginWidget.PasswordLineEdit.text = 'e6^u5F$E5Tsq'
+    //page().loginWidget.EmailLineEdit.text = ''
+    //page().loginWidget.PasswordLineEdit.text = ''
 
     proceed()
 }
