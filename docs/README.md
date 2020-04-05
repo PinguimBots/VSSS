@@ -6,17 +6,17 @@ Pinguimbots - VSSS
 </h1>
 
 <p align="center">
-<a hred="#Running-the-project">Running the project</a>
+<a href="#running-the-project">Running the project</a>
     •
-<a href="#Dependencies">Dependencies</a>
+<a href="#dependencies">Dependencies</a>
 </p>
 
 ---
 
 ## Dependencies
 
-This projects needs __at least__ [Meson](https://mesonbuild.com/) 0.48,
-[OpenCV](https://opencv.org/) 4.2.0, [Qt](https://qt.io) 5.14.1 and a C++17
+This project needs __at least__ [Meson](https://mesonbuild.com/) 0.48,
+[OpenCV](https://opencv.org/) 4.2.0, [Qt](https://qt.io) 5.9 and a C++17
 capable compiler. However, you can also [use a container](#using-a-container)
 with the dependencies installed instead of installing them system-wide
 if you so choose.
@@ -57,12 +57,12 @@ You can also [build it yourself](https://doc.qt.io/qt-5/build-sources.html).
 
 #### Using a container
 
-In vscode, install the `Remote - Containers ` vscode extention from the 
-extensions tab or open the command pallette with `Ctrl + Shift + P` and type 
+In vscode, install the `Remote - Containers ` vscode extention from the
+extensions tab or open the command pallette with `Ctrl + Shift + P` and type
 `ext install ms-vscode-remote.remote-containers`.
 
 After that, click the new green box at the bottom left corner:
- 
+
 ![green box image](../resources/readmes/using_a_container01.png)
 
 Select `Remote-Containers: Open folder in container...`:
@@ -71,14 +71,18 @@ Select `Remote-Containers: Open folder in container...`:
 
 Navigate to this folder, open it and you're done!
 
-> *Note*: You may need to run `$ xhost +local:docker` on the host machine 
+> *Note*: You may need to run `$ xhost +local:docker` on the host machine
 > to share the host's x11 to docker.
 
 > *Note*: The extention may not work if you are using vscodium instead of vscode.
 
 ## Running the project
 
-Firstly, setup the build system with `meson build`, this will create all the
-build files in the folder `build`.
+Firstly, setup the build system with:
 
-From then on just run `ninja -C build` to build and then run the executable as normal.
+    $ meson build
+
+This will create all the build files in the folder `build`, from then on just
+build with ninja and run the executable with:
+
+    $ ninja -C build && ./build/vsss
