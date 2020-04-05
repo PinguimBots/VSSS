@@ -1,0 +1,28 @@
+---
+BasedOnStyle: Mozilla
+AccessModifierOffset: '-4'
+AlignConsecutiveAssignments: 'true'
+AlignEscapedNewlines: Left
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: Always
+AllowShortLambdasOnASingleLine: All
+AllowShortLoopsOnASingleLine: 'true'
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakTemplateDeclarations: 'Yes'
+BinPackArguments: 'false'
+BinPackParameters: 'false'
+BreakConstructorInitializers: BeforeComma
+ColumnLimit: '80'
+ConstructorInitializerIndentWidth: '4'
+ContinuationIndentWidth: '4'
+IncludeBlocks: Preserve
+IndentCaseLabels: 'true'
+IndentWidth: '4'
+Language: Cpp
+PointerAlignment: Left
+SortIncludes: 'true'
+Standard: Cpp11
+SpaceBeforeParens: ControlStatements
+UseTab: Never
+...
