@@ -1,23 +1,24 @@
-project('vsss', 'cpp', default_options : ['cpp_std=c++17'], version: '0.0.1')
+project('vsss', 'cpp',
+    version: '0.0.0',
+    default_options : [
+        'cpp_std=c++17',
+        'buildtype=debugoptimized',
+    ]
+)
+
 deps = []
+args = []
 
-opencv = dependency('opencv', version: '>=4.2', fallback: ['opencv4', 'opencv'])
-deps += opencv
-
-qt_modules = ['Core']
-qt = dependency('qt5', modules: qt_modules, required: false)
-if not qt.found()
-    qt = []
-    qt_subproj = subproject('qt5')
-
-    foreach module : qt_modules
-        qt += qt_subproj.get_variable('qt5module_' + module)
-    endforeach
-endif
-deps += qt
+deps += dependency('opencv4', version: '>=4.2.0')
+deps += dependency('qt5', version: '>=5.9.0',
+    modules: [
+        'Core',
+        'Widgets',
+    ]
+)
 
 executable(
     'vsss',
     'src/main.cpp',
     dependencies: deps,
-    cpp_args: ['-fPIC'])
+    cpp_args: args)

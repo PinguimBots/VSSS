@@ -1,22 +1,20 @@
-#!/usr/env/bin python3
+#!/usr/bin/env python3
 
 import downloadutils as dlu
 
 import subprocess
 from tempfile import TemporaryDirectory
 from zipfile import ZipFile
+from platform import system
 from pathlib import Path
 from os import mkdir
 
 def main():
-    scriptpath = Path(__file__).resolve().parent
-    projectpath = scriptpath.parent.parent
-    installpath = projectpath.joinpath('subprojects', 'opencv4')
-    print(f'Installing  OpenCV 4.2.0 to {installpath}')
+    print('Installing OpenCV 4.2.0')
 
-    install_opencv(installpath)
+    install_opencv()
 
-def install_opencv(installpath: Path):
+def install_opencv(installpath: Path = None):
     url = 'https://github.com/opencv/opencv/archive/4.2.0.zip'
     expectedchecksum = '55bd939079d141a50fca74bde5b61b339dd0f0ece6320ec76859aaff03c90d9f'
 
@@ -51,20 +49,24 @@ def install_opencv(installpath: Path):
             f'-S{srcpath}', # Path to source
             f'-B{builddir}', # Path to build
             '-DCMAKE_BUILD_TYPE=Release',
-            f'-DCMAKE_INSTALL_PREFIX={installpath}'
+            f'-DCMAKE_INSTALL_PREFIX={installpath}' if installpath is not None,
+            '-DOPENCV_GENERATE_PKGCONFIG=ON',
         ]
+        if system() == 'Windows': cmake_command += ['-T', 'host=x86']
         print(f'Running cmake with: {cmake_command}')
         cmake_proc = subprocess.run(cmake_command)
 
-        make_command = [
-            'make',
-            'install',
-            '-j4',
-            '-C', # Where to run make
-            str(builddir)
+        compile_command = [
+            'cmake',
+            '--build',
+            str(builddir),
+            '--target',
+            'INSTALL' if system() == 'Windows' else 'install',
+            #'--parallel',
+            #'4'
         ]
-        print(f'Running make with: {make_command}')
-        make_proc = subprocess.run(make_command)
+        print(f'Compiling with: {compile_command}')
+        compile_proc = subprocess.run(compile_command)
 
     print('--- All donezo! ---')
 

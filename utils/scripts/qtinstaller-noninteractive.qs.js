@@ -4,7 +4,7 @@
 // that will be appended here by the install script.
 
 function Controller() {
-    installer.setMessageBoxAutomaticAnswer("OverwriteTargetDirectory", QMessageBox.Ok)
+    //installer.setMessageBoxAutomaticAnswer("OverwriteTargetDirectory", QMessageBox.Ok)
     installer.setMessageBoxAutomaticAnswer("installationError", QMessageBox.Retry);
     installer.setMessageBoxAutomaticAnswer("installationErrorWithRetry", QMessageBox.Retry);
     installer.setMessageBoxAutomaticAnswer("DownloadError", QMessageBox.Retry);
@@ -65,7 +65,7 @@ Controller.prototype.IntroductionPageCallback = function() {
 Controller.prototype.TargetDirectoryPageCallback = function() {
     logCurrentPage()
 
-    page().TargetDirectoryLineEdit.text = InstallPath
+    //page().TargetDirectoryLineEdit.text = // install path here
 
     proceed()
 }

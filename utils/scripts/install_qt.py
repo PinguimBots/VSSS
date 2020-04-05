@@ -10,13 +10,11 @@ from pathlib import Path
 
 def main():
     scriptpath = Path(__file__).resolve().parent
-    projectpath = scriptpath.parent.parent
-    installpath = projectpath.joinpath('subprojects', 'qt5')
-    print(f'Installing  Qt 5.14.1 to {installpath}')
+    print(f'Installing Qt 5.14.1')
 
-    install_qt(scriptpath, installpath)
+    install_qt(scriptpath)
 
-def write_qt_installscript(os: str, filepath: str, install_to: str, appendedscriptfilepath: str):
+def write_qt_installscript(os: str, filepath: str, appendedscriptfilepath: str):
     with open(filepath, "wb") as f:
         f.truncate(0) # Erase previous contents
 
@@ -27,7 +25,7 @@ def write_qt_installscript(os: str, filepath: str, install_to: str, appendedscri
         elif (os == 'Windows'):
             f.write('\"qt.qt5.5141.win64_msvc2017_64\"'.encode())
 
-        f.write(f'];var InstallPath = String.raw`{install_to}`;'
+        f.write('];'
                 # Write is expecting a bytes object and not a str.
                 .encode())
 
@@ -81,7 +79,6 @@ def install_qt(scriptpath: Path, installpath: Path):
         write_qt_installscript(
             os=operatingsystem,
             filepath=installscriptpath,
-            install_to=installpath,
             appendedscriptfilepath=scriptpath.joinpath('qtinstaller-noninteractive.qs.js'))
 
         # chmod +x installerpath
