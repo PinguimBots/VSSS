@@ -61,6 +61,6 @@ RUN apt-get install -y qt5-default
 RUN apt-get install -y xorg
 
 ## Some more utils
-RUN apt-get install -y clang-format
+RUN apt-get install -y clang-format vim nano
 
 ENV DEBIAN_FRONTEND=dialog

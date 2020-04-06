@@ -57,7 +57,7 @@ You can also [build it yourself](https://doc.qt.io/qt-5/build-sources.html).
 
 #### Using a container
 
-In vscode, install the `Remote - Containers ` vscode extention from the
+In vscode, install the `Remote - Containers` vscode extention from the
 extensions tab or open the command pallette with `Ctrl + Shift + P` and type
 `ext install ms-vscode-remote.remote-containers`.
 
