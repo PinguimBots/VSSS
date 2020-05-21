@@ -2,8 +2,8 @@
     "name": "VSSS Container",
     "dockerFile": "Dockerfile",
     "extensions": [
-		"ms-vscode.cpptools",
-		"austin.code-gnu-global",
+        "ms-vscode.cpptools",
+        "austin.code-gnu-global",
         "ms-azuretools.vscode-docker",
         "asabil.meson"
     ],
